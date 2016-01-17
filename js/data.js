@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
   var sessionsAPI = "https://www.drupalcampnj.org/program/sessions/json?callback=?";
-  var jqxhr = $.getJSON( sessionsAPI, function() {
+  var jqxhr = $.getJSON( sessionsAPI, function(data) {
     console.log(data);
     var items = [];
     $.each( data, function( key, val ) {
