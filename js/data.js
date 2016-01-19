@@ -3,15 +3,15 @@
 $(document).ready(function() {
 
   var sessionsAPI = "https://www.drupalcampnj.org/program/sessions/json?callback=?";
+  var items = [];
   var jqxhr = $.getJSON( sessionsAPI, function(data) {
-    console.log(data);
-    var items = [];
-    $.each( data, function( key, val ) {
-      //items.push( "<li id='" + key + "'>" + val + "</li>" );
-      //console.log (key value);
+    var nodes = data.nodes;
+    $.each( nodes, function( key, val ) {
+      items.push("<label class='item'>" + val.node.Title + "<input id='session_list' type='checkbox' class='item-checkbox' value='" + val.node.UUID +"'></label>");
     });
-  })
-  .fail(function() {
-    console.log( "error" );
   });
-});
+
+  jqxhr.complete(function() {
+    $('.sessions').append(items);
+  });
+  });
